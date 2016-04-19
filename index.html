@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Birthday Reminder App</title>
+    <!-- <link rel="stylesheet" type="text/css" href="style/main.css"> -->
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">    
+  </head>
+  <body>
+    <div class="container-fluid">  
+      <h1>Birthday Reminder App</h1>
+      <h3>Add Birthdays</h3>
+      <form id="add-birthdays">
+        <div class="form-group">
+          <label style="color:#FFF;" for="name">Name</label>
+          <input type="text" class="form-control" id="name" placeholder="Name">
+        </div>
+        <div class="form-group">
+          <label style="color:#FFF;" for="day">Day</label>
+          <input type="text" class="form-control" id="day" placeholder="Day">
+        </div>
+        <div class="form-group">
+          <label style="color:#FFF;" for="month">Month</label>
+          <input type="text" class="form-control" id="month" placeholder="Month">
+        </div>
+        <div class="form-group">
+          <label style="color:#FFF;" for="year">Year of Birth</label>
+          <input type="text" class="form-control" id="year" placeholder="Year of Birth">
+        </div>
+        <button type="submit" class="btn btn-default">Submit</button>
+      </form>      
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Day</th>
+            <th>Month</th>                 
+          </tr>
+        </thead>
+        <tbody class="mainBody"></tbody>
+      </table>
+    </div>
+    <script>window.$ = window.jQuery = require("./js/jquery-2.2.3.min.js");</script>
+    <script src="js/display-table.js"></script>
+  <!-- index.html -->
+  <script>
+  'use strict';
+  const remote = require('electron').remote;
+  const ipcRenderer = require('electron').ipcRenderer;
+
+
+  $('#add-birthdays').submit(function(e) {
+    e.preventDefault();
+    let name = $('#name').val();
+    let day = $('#day').val();
+    let month = $('#month').val(); 
+    let yob = $('#year').val(); 
+    ipcRenderer.send('inputs-form', {
+      birthdayMonth: month, 
+      name: name, 
+      day: day, 
+      year: yob
+    });
+    $('#name').val('');
+    $('#day').val('');
+    $('#month').val('');
+    $('#year').val('');
+  })
+
+  ipcRenderer.on('inputs', function(event, message) {
+    console.log(message);
+  });  
+  ipcRenderer.send('form-inputs', {name: 'max ho', age: 30});
+
+  ipcRenderer.on('mainObj', function(event, message) {
+
+  });
+  </script>    
+  </body>
+</html>

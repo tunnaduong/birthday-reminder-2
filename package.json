@@ -1,0 +1,22 @@
+{
+  "name": "birthday-reminder",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "birthday",
+    "reminder"
+  ],
+  "author": "Max Ho",
+  "license": "ISC",
+  "devDependencies": {
+    "electron-prebuilt": "^0.37.6",
+    "ws": "^1.1.0"
+  },
+  "dependencies": {
+    "jsftp": "^1.5.3"
+  }
+}
