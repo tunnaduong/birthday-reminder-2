@@ -43,39 +43,7 @@
     </div>
     <script>window.$ = window.jQuery = require("./js/jquery-2.2.3.min.js");</script>
     <script src="js/display-table.js"></script>
-  <!-- index.html -->
-  <script>
-  'use strict';
-  const remote = require('electron').remote;
-  const ipcRenderer = require('electron').ipcRenderer;
-
-
-  $('#add-birthdays').submit(function(e) {
-    e.preventDefault();
-    let name = $('#name').val();
-    let day = $('#day').val();
-    let month = $('#month').val(); 
-    let yob = $('#year').val(); 
-    ipcRenderer.send('inputs-form', {
-      birthdayMonth: month, 
-      name: name, 
-      day: day, 
-      year: yob
-    });
-    $('#name').val('');
-    $('#day').val('');
-    $('#month').val('');
-    $('#year').val('');
-  })
-
-  ipcRenderer.on('inputs', function(event, message) {
-    console.log(message);
-  });  
-  ipcRenderer.send('form-inputs', {name: 'max ho', age: 30});
-
-  ipcRenderer.on('mainObj', function(event, message) {
-
-  });
-  </script>    
+    <script src="js/form-input.js"></script>
+  <!-- index.html -->  
   </body>
 </html>
